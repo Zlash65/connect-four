@@ -1,0 +1,181 @@
+body {
+  background: url(../img/konoha.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+div.mask {
+  background-color: rgba(255, 255, 255, 0.4);
+  height:100vh;
+}
+
+nav {
+  align-self: baseline;
+  height: 20vh;
+  display:flex;
+  justify-content: space-around;
+  margin-left: -50px;
+}
+
+img {
+  height:70px;
+}
+
+main {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+#scoreboard {
+  display:flex;
+  margin-top: 40px;
+  visibility: hidden;
+}
+
+.score {
+  text-align: center;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 40px;
+  line-height: 40px;
+  margin: 10px 30px;
+  text-shadow: 2px 2px 20px blue;
+  color: white;
+}
+
+.reset {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .4);
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 20px;
+  padding: 10px 10px;
+  margin: 50px 10px;
+  border-radius: 10px;
+  border: 3px solid white;
+  color: rgba(6 ,188 ,251);
+  visibility: hidden;
+}
+
+.reset:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 2rem 0 rgba(255, 255, 255, .2);
+}
+
+div.grid {
+  width: 630px;
+  height: 630px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  border-radius: 10px;
+  padding: 10px;
+
+  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .4);
+  background-color: rgba(251, 6, 100, 0.5);
+  background-image: -webkit-linear-gradient(bottom right, rgba(6 ,188 ,251 , 0.5) 0%, rgb(103, 158, 247, 0.6) 64%);
+  background-image: -o-linear-gradient(bottom right, rgba(6 ,188 ,251 , 0.5) 0%, rgb(103, 158, 247 , 0.6) 64%);
+  background-image: linear-gradient(to top left, rgba(6 ,188 ,251 , 0.5) 0%, rgb(103, 158, 247 , 0.6) 64%);
+}
+
+h3 {
+  text-align: center;
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 70px;
+  color:white;
+  margin: 10px 0px;
+}
+
+p {
+  text-align: center;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-size: 20px;
+  line-height: 40px;
+  margin: 10px 50px;
+  text-shadow: 2px 2px 20px blue;
+  color: white;
+}
+
+.start-button {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .4);
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 40px;
+  padding: 10px 20px;
+  margin: 50px 10px;
+  border-radius: 30px;
+  color: rgba(6 ,188 ,251);
+  border: 3px solid white;
+}
+
+.start-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 2rem 0 rgba(255, 255, 255, .2);
+}
+
+div.grid-square {
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  display: none;
+}
+
+div.grid-circle {
+  width: 80px;
+  height: 80px;
+  box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 1);
+  border-radius: 40px;
+  border: 2px solid white;
+  display: none;
+}
+
+div.grid-circle-highlighted {
+  box-shadow: 0 0 1rem 0 yellow;
+  border: 3px solid yellow;
+}
+
+div.grid-choice-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgb(242, 222, 58);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.3);
+}
+
+div.naruto {
+  background-image: url('../img/naruto.png');
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 1);
+  border-radius: 40px;
+  border: 2px solid white;
+}
+
+div.sasuke {
+  background-image: url('../img/sasuke.png');
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 0 1rem 0 rgba(255, 255, 255, 1);
+  border-radius: 40px;
+  border: 2px solid white;
+}
+
+div.naruto-circles {
+  background-color: rgb(234, 152, 40);
+  animation: pulse 2s infinite ease;
+}
+
+div.sasuke-circles {
+  background-color: rgb(39, 130, 255);
+  animation: pulse 2s infinite ease;
+}
+
+@keyframes pulse {
+   0% {box-shadow: 0 0 0 0px rgba(225, 225, 225, 0);}
+   50% {box-shadow: 0 0 3rem 0 rgba(255, 255, 255, 1);}
+   100% {box-shadow: 0 0 0 0px rgba(225, 225, 225, 0);}
+}
