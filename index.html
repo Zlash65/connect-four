@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css?family=Dokdo|East+Sea+Dokdo|ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Connect Four</title>
+  </head>
+
+  <body>
+
+    <div class="mask">
+      <nav>
+        <div id="scoreboard">
+          <img src="img/naruto.png" alt="Naruto">
+          <div class="score"><span id="naruto-score">0</span> : <span id="sasuke-score">0</span></div>
+          <img src="img/sasuke.png" alt="Sasuke">
+        </div>
+
+        <div>
+          <button class="reset" id="reset-player-two">New Game (vs Player)</button>
+        </div>
+      </nav>
+
+      <main>
+        <div class="grid">
+          <h3>Connect Four: The Game</h3>
+          <p>Play a game of Connect Four with your friend!</p>
+          <p>All you have to do is connect four of your colour disc before your opponent does. This can be done horizontally, vertically or diagonally. To drop disc in your chosen column, click on one of the yellow circles!</p>
+          <button id="player-two" class="start-button">vs Player</button>
+        </div>
+      </main>
+
+      <script type="text/javascript" src="js/main.js"></script>
+    </div>
+  </body>
+</html>
