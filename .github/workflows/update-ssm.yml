@@ -1,0 +1,29 @@
+name: Update SSM
+concurrency:
+  group: update-ssm
+  cancel-in-progress: false
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+        - development
+        - staging
+        - qa
+      value:
+        description: 'Add env in "KEY=VALUE" format'
+        type: string
+
+jobs:
+  update-ssm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create new release branch
+        run: |
+          echo  The values are
+          echo ${{ inputs.environment }}
+          echo ${{ inputs.value }}
