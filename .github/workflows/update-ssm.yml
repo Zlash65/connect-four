@@ -27,5 +27,5 @@ jobs:
           echo  The values are
           echo ${{ inputs.environment }}
           for env in "${{ inputs.value }}"; do\
-            echo $env;\
+            echo here - $env;\
           done
