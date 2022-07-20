@@ -45,7 +45,7 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
         run: |
           export SSM_PREFIX="/${{ inputs.service }}/${{ inputs.environment }}"
-          if [[ "${{ inputs.environment }}" != "shared" ]]; then
+          if [[ "${{ inputs.service }}" != "shared" ]]; then
             export SSM_PREFIX="/cbh-${{ inputs.service }}/${{ inputs.environment }}"
           fi
           for env in ${{ inputs.value }}; do
