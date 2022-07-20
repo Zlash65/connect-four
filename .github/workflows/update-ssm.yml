@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Mask input values
-        run: echo "::add-mask::${{ inputs.value }}"
+        run: echo "::add-mask::${{ inputs.parameter }}"
 
       - name: Create new release branch
         env:
