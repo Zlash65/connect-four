@@ -8,12 +8,27 @@ on:
       environment:
         description: 'Select the environment'
         required: true
-        default: 'development'
+        default: 'temp'
         type: choice
         options:
+        - temp
         - development
         - staging
         - qa
+      service:
+        description: 'Select the service'
+        required: true
+        default: 'shared'
+        type: choice
+        options:
+        - shared
+        - apionly
+        - apigateway
+        - mainservice
+        - payments
+        - documents
+        - notifications
+        - frontend-admin
       value:
         description: 'Add env in "KEY=VALUE" format'
         type: string
@@ -29,10 +44,12 @@ jobs:
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          echo  The values are
-          echo ${{ inputs.environment }}
-          for env in ${{ inputs.value }}; do \
-            NAME=$(echo $env | awk '{split($0,a,"="); print a[1]}'); \
-            VALUE=$(echo $env | cut -f 2- -d '=' | sed 's/"//g'); \
-            aws ssm put-parameter --name "/temp/${{ inputs.environment }}/${NAME}" --value $VALUE --type "SecureString" --data-type "text" --overwrite; \
+          export SSM_PREFIX="/${{ inputs.service }}/${{ inputs.environment }}"
+          if [[ "${{ inputs.environment }}" != "shared" ]]; then
+            export SSM_PREFIX="/cbh-${{ inputs.service }}/${{ inputs.environment }}"
+          fi
+          for env in ${{ inputs.value }}; do
+            NAME=$(echo $env | awk '{split($0,a,"="); print a[1]}')
+            VALUE=$(echo $env | cut -f 2- -d '=' | sed 's/"//g')
+            aws ssm put-parameter --name "${SSM_PREFIX}/${NAME}" --value ${VALUE} --type "SecureString" --data-type "text" --overwrite
           done
