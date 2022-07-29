@@ -8,13 +8,13 @@ on:
       environment:
         description: 'Select the environment'
         required: true
-        default: 'temp'
+        default: 'development'
         type: choice
         options:
-        - temp
-        - development
-        - staging
         - qa
+        - staging
+        - development
+        - production
       service:
         description: 'Select the service'
         required: true
@@ -33,18 +33,26 @@ on:
         description: 'Add env in "KEY=VALUE" format'
         type: string
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   update-ssm:
     runs-on: ubuntu-latest
+    env:
+      PREFIX: ""
     steps:
-      - name: Create new release branch
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      - if: ${{ inputs.environment == 'production' }}
+        run: echo "PREFIX=PRODUCTION_" >> $GITHUB_ENV
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets[format('{0}AWS_GITHUB_ROLE_ARN', env.PREFIX)] }}
+          aws-region: us-west-2
+      - name: Put envs on SSM - Parameter Store
         run: |
-          export SSM_PREFIX="/${{ inputs.service }}/${{ inputs.environment }}"
+          export SSM_PREFIX="/shared/${{ inputs.environment }}"
           if [[ "${{ inputs.service }}" != "shared" ]]; then
             export SSM_PREFIX="/cbh-${{ inputs.service }}/${{ inputs.environment }}"
           fi
